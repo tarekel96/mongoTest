@@ -137,6 +137,6 @@ db.on('error', function(err) {
   console.log("Mongoose error: ", err);
 });
 
-db.once('open', fucntion() {
+db.once('open', function(){
   console.log("Mongoose login successful.");
 })
