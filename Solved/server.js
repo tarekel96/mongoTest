@@ -122,3 +122,21 @@ app.post("/articles/:id", function(req, res) {
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
 });
+
+var databaseUri = 'mongodb://<dbuser>:<dbpassword>@ds045507.mlab.com:45507/heroku_vv63z8kn';
+
+if(process.env.MONGOB_URI) {
+  mongoose.connect(process.env.MONGOB_URI);
+} else {
+  mongoose.connect(databaseUri);
+}
+
+var db = mongoose.connection;
+
+db.on('error', function(err) {
+  console.log("Mongoose error: ", err);
+});
+
+db.once('open', fucntion() {
+  console.log("Mongoose login successful.");
+})
